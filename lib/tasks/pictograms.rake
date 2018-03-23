@@ -127,7 +127,11 @@ namespace :pictograms do
       file_path = File.join tmp_load_folder, pictogram[:name]
       File.open(file_path, 'wb') do |file|
         puts "Downloading: #{pictogram[:url]}"
+<<<<<<< HEAD
         file.write open(pictogram[:url], proxy: ENV['http_proxy']).read
+=======
+        file.write open(pictogram[:url], :proxy => ENV['http_proxy'].blank? ? nil : ENV['http_proxy']).read
+>>>>>>> 0690d31410dbe5cf82fe47a71e7627af31251649
       end
       file_type = MimeMagic.by_magic(File.open(file_path)).subtype
       File.rename file_path, "#{file_path}.#{file_type}"
